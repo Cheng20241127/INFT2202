@@ -39,8 +39,15 @@ console.log(itemElement);
 
 //EventTarget <-- Node <-- Document  
 //https://developer.mozilla.org/en-US/docs/Web/API/Node
-console.log(document.childNodes); //https://dmitripavlutin.com/dom-node-element/
+//https://dmitripavlutin.com/dom-node-element/
 //https://developer.mozilla.org/en-US/docs/Web/API/Document
-console.log(document.children);
-console.log(document.children[0].childNodes);
-console.log(document.children[0].children);  
+
+//https://developer.mozilla.org/en-US/docs/Web/API/Document/children
+console.log(document.children); //static HtmlCollection
+//https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes
+console.log(document.children[0].childNodes); //live NodeList
+console.log(document.children[0].children);
+
+console.log(document.childNodes);
+console.log(document.childNodes[2].childNodes); //only item 2 is a HTML element
+console.log(document.childNodes[2].children);
