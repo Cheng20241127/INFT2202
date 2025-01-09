@@ -24,7 +24,7 @@ body {
   background-color: rgba(0,0,0,0);
 }
 
-.full-img button {
+.full-img button{
   border: 0;
   background: rgba(150,150,150,0.6);
   text-shadow: 1px 1px 1px white;
@@ -32,7 +32,15 @@ body {
   position: absolute;
   cursor: pointer;
   top: 2px;
+}
+.full-img button.dark{
   left: 2px;
+}
+.full-img button.light{
+  left: 2px;
+}
+.full-img button.add {
+  right: 2px;
 }
 
 .thumb-bar ul li input {
