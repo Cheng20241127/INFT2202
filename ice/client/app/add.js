@@ -55,6 +55,7 @@ function validateAnimalForm ( form ) {
     } else {
         eleNameError.classList.add('d-none');
     }
+    // add validation for the remaining fields. 
 
     // return if the form is valid or not
     return valid
