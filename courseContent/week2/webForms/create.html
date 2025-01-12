@@ -34,19 +34,24 @@ Description: form demo page
       </div>
     </main>
     <script>
+        if (!localStorage.getItem('users')) {
+        // create a new entry in local storage and put an empty array in it
+          localStorage.setItem('users', JSON.stringify([]))
+        }
       document.getElementById('animal-form').addEventListener('submit', function(event) {
           event.preventDefault(); // Prevent the form from submitting the traditional way
 
           // Gather form data
           const formData = new FormData(this);
-          const formDataObject = {};
+          const user = {};
           formData.forEach((value, key) => {
-              formDataObject[key] = value;
+            user[key] = value;
           });
 
-          // Convert to JSON
-          const jsonData = JSON.stringify(formDataObject);
-          console.log(jsonData);
+          let users = JSON.parse(localStorage.getItem('users'));
+          users.push(user);
+    // and save it in storage again
+          localStorage.setItem('users', JSON.stringify(users));
       });      
     </script>    
   </body>
