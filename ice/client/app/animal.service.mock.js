@@ -28,7 +28,6 @@ AnimalService.prototype.saveAnimal = function(animal) {
         throw new Error('An animal with that name already exists!');
     }
     // if it doesn't, add it to the array
-    let animals = JSON.parse(localStorage.getItem('animals'));
     animals.push(animal);
     // and save it in storage again
     localStorage.setItem('animals', JSON.stringify(animals));
