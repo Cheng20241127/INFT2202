@@ -18,10 +18,61 @@ Description: dom demo page
     <header class="d-flex justify-content-center py-3">
     </header>
     <main class="flex-shrink-0">
-        <p>launch VS Code, open client folder</p>
-        <p>run npm init</p>
-        <p>run npm i eslint</p>
+        <h1>Week 3</h1>
+        <h2>ES6</h2>
+        <a href="https://www.geeksforgeeks.org/introduction-to-es6/">Introduction to ES6</a>
+        <h3><a href="https://www.javascripttutorial.net/es6-modules/">ES6 Modules</a></h3>
+        <a href="https://inft2202.opentech.durhamcollege.org/notes/season2/modules">Differences between ESM / CommonJS</a>
+        <h2>Node.js</h2>
+        <h3><a href="Introduction to Node.js">Introduction to Node.js</a></h3>
+        <p>Node.js is an open-source and cross-platform JavaScript runtime environment.</p>
+        <h3><a href="https://www.freecodecamp.org/news/what-is-npm-a-node-package-manager-tutorial-for-beginners/">
+            Introduction to Package Management via NPM</a></h3>
+        <p>NPM – or "Node Package Manager" – is the default package manager for JavaScript's runtime Node.js.</p>
+        <h4>Downloading NPM</h4>
+        <ul>
+            <li>launch VS Code, open client folder.
+                <img src="client.png">
+            </li>
+            <li>npm init</li>
+            <li>npm i eslint --save-dev</li>
+            <li>package.json
+                <pre>
+                    <code>
+{
+    "name": "client",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint \"app/**/*.js\""
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "eslint": "^9.18.0"
+    }
+}                          
+                    </code>
+                </pre>
+            </li>
+            <li>eslint.config.js
+                <pre>
+                <code>
+import globals from "globals";
+import pluginJs from "@eslint/js";
+/** @type {import('eslint').Linter.Config[]} */
+export default [
+  {languageOptions: { globals: globals.browser }},
+  pluginJs.configs.recommended,
+];
+            </code>
+            </pre>
+        </li>
+        <li>Add node_modules to .gitignore</li>
+        </ul>
     </main>
 </body>
-
 </html>
