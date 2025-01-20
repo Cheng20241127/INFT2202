@@ -1,4 +1,4 @@
-import Animal from "./animal.js";
+import {Animal} from "./animal.js";
 
 const parentObject = {
     name: 'Peter',

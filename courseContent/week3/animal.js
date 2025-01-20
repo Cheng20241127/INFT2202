@@ -8,4 +8,5 @@ Animal.prototype.sound = function () {
     console.log(`${this.name} makes a noise.`);
 };
 
-export default Animal;
+//export default Animal;
+export {Animal};
