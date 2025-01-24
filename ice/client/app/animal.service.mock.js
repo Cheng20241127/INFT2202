@@ -20,7 +20,7 @@ function AnimalService() {
     if (!localStorage.getItem('animals')) {
         // https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage  
         // create a new entry in local storage and put an empty array in it        
-        localStorage.setItem('animals', JSON.stringify(initAnimals()))
+        localStorage.setItem('animals', JSON.stringify([]))
     }    
 }
 /*
