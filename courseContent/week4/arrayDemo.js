@@ -2,6 +2,7 @@ let tcase = 1;
 switch(tcase){
     case 0:{
         const numbers = [45, 4, 9, 16, 25];
+//https://www.w3schools.com/js/js_array_iteration.asp#mark_reduce        
         let sum = numbers.reduce(myFunction);
         
         function myFunction(total, value, index, array) {
