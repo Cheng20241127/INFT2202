@@ -94,4 +94,4 @@ AnimalService.prototype.deleteAnimal = function(animal) {
     return true;
 }
 
-const animalService = new AnimalService();
+export default new AnimalService();

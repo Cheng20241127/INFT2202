@@ -1,3 +1,4 @@
+import animalService from "./animal.service.mock.js";
 
 console.log('we are on the list page');
 
