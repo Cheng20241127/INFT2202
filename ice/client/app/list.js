@@ -3,6 +3,20 @@ console.log('we are on the list page');
 
 //http://127.0.0.1:5501/ice/client/list.html?page=2&perPage=15
 const params = new URL(document.location).searchParams;
+//add records for pagination test
+let recCount = params.get("records");
+if(recCount !== null){
+    let index = 0;
+    while(recCount-->0) {
+        animalService.saveAnimal({
+            "name": `name ${index++}`,
+            "breed": "Grizzly Bear",
+            "legs": 4,
+            "eyes": 2,
+            "sound": "Moo"
+          });
+    }    
+}
 
 /* do table stuff */
 const eleEmpty = document.getElementById('empty-message');
