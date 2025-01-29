@@ -1,16 +1,19 @@
 import animalService from "./animal.service.mock.js";
 
-function animal() {
+function animal(name) {
     const form = document.createElement('form');
     let description = 'Add Animal';
+    let animal = null;
     function createContent() {
         const container = document.createElement('div');
         container.classList.add('mb-2');
         //create animal form content
         const mb3Name = document.createElement('div');
         mb3Name.classList.add('mb-3');
+        let editableInput = `<input type="text" class="form-control" id="name" name="name">`;
+        let readonlyInput = `<input type="text" class="form-control" id="name" name="name" value="${animal.name}" readonly>`;
         mb3Name.innerHTML = '<label for="name" class="form-label">Animal Name</label>' +
-            '<input type="text" class="form-control" id="name" name="name">' +
+            (animal!=null ? readonlyInput : editableInput) +
             '<p class="text-danger d-none"></p>';
         container.append(mb3Name);
 
@@ -132,13 +135,19 @@ function animal() {
         }
     }
     
-    // assign a handler to the submit event
-    form.addEventListener('submit', function (event) {
-        // prevent the default action from happening
-        event.preventDefault();
-        submit();
-    });
-    
+    if (!name) {
+        // assign a handler to the submit event
+        form.addEventListener('submit', function (event) {
+            // prevent the default action from happening
+            event.preventDefault();
+            submit();
+        });
+    }
+    else{
+        description = 'Update Animal';
+        animal = animalService.findAnimal(name);
+    }
+
     return {
         description,
         element: createContent()
