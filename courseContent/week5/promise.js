@@ -22,7 +22,7 @@ const animalService = (function() {
                     else {
                         resolve(animals);
                     }
-                }, 1000);
+                }, 2000);
             });
         },
         increaseAge: function(){
@@ -40,11 +40,25 @@ let animal = {
     age: 1
 };
 animalService.saveAnimal(animal);
-/* try{
-    console.log(await animalService.getAnimals());
-} catch(e){
-    console.log(e);
-} */
-/* console.log(await animalService.getAnimals()
-    .then(ret=>ret)
-    .catch(err=>err)); */
+
+let wait = false;
+let date = new Date(Date.now());
+console.log(date.toLocaleString(),  'getAnimals ...');
+if(wait){
+    try{
+        let animals = await animalService.getAnimals();
+        date = new Date(Date.now());
+        console.log(date.toLocaleString(), animals);
+    } catch(e){
+        console.log(e);
+    } 
+} else {
+    animalService.getAnimals()
+    .then(ret=>{
+        let date = new Date(Date.now());
+        console.log(date.toLocaleString(), ret);
+    })
+    .catch(err=> console.log(err));
+}
+date = new Date(Date.now());
+console.log(date.toLocaleString(), 'code after getAnimals');  
