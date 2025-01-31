@@ -11,7 +11,7 @@ function animal(name) {
         const mb3Name = document.createElement('div');
         mb3Name.classList.add('mb-3');
         let editableInput = `<input type="text" class="form-control" id="name" name="name">`;
-        let readonlyInput = `<input type="text" class="form-control" id="name" name="name" value="${animal.name}" readonly>`;
+        let readonlyInput = `<input type="text" class="form-control" id="name" name="name" value="${animal!=null?animal.name:""}" readonly>`;
         mb3Name.innerHTML = '<label for="name" class="form-label">Animal Name</label>' +
             (animal!=null ? readonlyInput : editableInput) +
             '<p class="text-danger d-none"></p>';
@@ -20,7 +20,7 @@ function animal(name) {
         const mb3Breed = document.createElement('div');
         mb3Breed.classList.add('mb-3');
         mb3Breed.innerHTML = '<label for="breed" class="form-label">Animal Breed</label>' +
-            '<input type="text" class="form-control" id="breed" name="breed">' +
+            `<input type="text" class="form-control" id="breed" name="breed" value="${animal!=null?animal.breed:""}">` +
             '<p class="text-danger d-none"></p>';
         container.append(mb3Breed);
         
@@ -100,7 +100,7 @@ function animal(name) {
         return valid
     }    
     // create a handler to deal with the submit event
-    function submit() {
+    function submit(action) {
         // validate the form
         const valid = validate();
         // do stuff if the form is valid
@@ -120,7 +120,11 @@ function animal(name) {
 
             const eleNameError = form.name.nextElementSibling
             try {
-                animalService.saveAnimal(animalObject);
+                if(action=="new"){
+                    animalService.saveAnimal(animalObject);
+                } else {
+                    animalService.updateAnimal(animalObject)
+                } 
                 eleNameError.classList.add('d-none');
                 form.reset();
                 window.location = './list.html';
@@ -140,12 +144,17 @@ function animal(name) {
         form.addEventListener('submit', function (event) {
             // prevent the default action from happening
             event.preventDefault();
-            submit();
+            submit("new");
         });
     }
     else{
         description = 'Update Animal';
         animal = animalService.findAnimal(name);
+        form.addEventListener('submit', function (event) {
+            // prevent the default action from happening
+            event.preventDefault();
+            submit("update");
+        });         
     }
 
     return {
