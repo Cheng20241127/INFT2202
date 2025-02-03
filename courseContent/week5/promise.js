@@ -1,10 +1,13 @@
-/* const apiPromise1 = axios.get('https://reqres.in/api/users?page=2')
+/*const apiPromise1 = axios.get('https://reqres.in/api/users?page=2')
 .then(response => {
     return response.data;
 })
 .catch(err => {
     return {}
-}); */
+});
+//here you can keep loading your page
+*/
+
 
 const animalService = (function() {
     let animals = [];
@@ -22,7 +25,7 @@ const animalService = (function() {
                     else {
                         resolve(animals);
                     }
-                }, 2000);
+                }, 5000);
             });
         },
         increaseAge: function(){
@@ -41,7 +44,7 @@ let animal = {
 };
 animalService.saveAnimal(animal);
 
-let wait = false;
+let wait = true;
 let date = new Date(Date.now());
 console.log(date.toLocaleString(),  'getAnimals ...');
 if(wait){

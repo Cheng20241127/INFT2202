@@ -35,14 +35,15 @@ animalService.saveAnimal(animal);
 //console.log(animalService.animals);
 try{
 //demo 'this' problem brought by timer    
-    setTimeout(animalService.saveAnimal, 1000, animal);
+//    setTimeout(animalService.saveAnimal, 1000, animal);
 }
 catch(err){
     console.log(err);
 }
 
 //console.log(animalService.animals);
-//setTimeout(()=>{animalService.saveAnimal(animal);}, 1.0 * 1000);
+//a solution to use object member funciton in a timer
+setTimeout(()=>{animalService.saveAnimal(animal);}, 1.0 * 1000);
 
 //setTimeout(()=>{console.log(animalService.animals);}, 2000);
 
