@@ -1,6 +1,6 @@
-import animalService from "./animal.service.mock.js";
+import animalService from "../animal.service.mock.js";
 
-function animal(name) {
+async function animal(name) {
     const form = document.createElement('form');
     let description = 'Add Animal';
     let animal = null;
@@ -149,7 +149,8 @@ function animal(name) {
     }
     else{
         description = 'Update Animal';
-        animal = animalService.findAnimal(name);
+        let ret = await animalService.findAnimal(name);
+        animal = ret[0];
         form.addEventListener('submit', function (event) {
             // prevent the default action from happening
             event.preventDefault();

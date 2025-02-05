@@ -2,7 +2,6 @@ import animalService from "./animal.service.mock.js";
 
 console.log('we are on the list page');
 
-//http://127.0.0.1:5501/ice/client/list.html?page=2&perPage=15
 const params = new URL(document.location).searchParams;
 //add records for pagination test
 let recCount = params.get("records");
@@ -22,22 +21,31 @@ if(recCount !== null){
 /* do table stuff */
 const eleEmpty = document.getElementById('empty-message');
 const eleTable = document.getElementById('animal-list');
+const eleWaiting = document.getElementById('waiting');
 
-//const records = animalService.getAnimals();
 let recordPage = {
     page: Number(params.get('page') ?? 1),
     perPage: Number(params.get('perPage') ?? 7)
 }
-const {records, pagination} = animalService.getAnimalPage(recordPage);
+try {
+    const {records, pagination} = await animalService.getAnimalPage(recordPage);
+    eleWaiting.classList.add('d-none');
 
-if (!records.length) {
-    eleEmpty.classList.remove('d-none');
-    eleTable.classList.add('d-none');
-} else {
-    eleEmpty.classList.add('d-none');
-    eleTable.classList.remove('d-none');
-    drawAnimalTable(records);
-    drawPagination(pagination);
+    if (!records.length) {
+        eleEmpty.classList.remove('d-none');
+        eleTable.classList.add('d-none');
+    } else {
+        eleEmpty.classList.add('d-none');
+        eleTable.classList.remove('d-none');
+        drawAnimalTable(records);
+        drawPagination(pagination);
+    }    
+}
+catch(ex) {
+    eleWaiting.classList.add('d-none');
+    const errorMessage = document.querySelector('#error-message');
+    errorMessage.innerHTML = ex;
+    errorMessage.classList.remove('d-none');
 }
 /* 
  * 
@@ -100,7 +108,6 @@ function drawAnimalTable(animals)
 
 function onDeleteButtonClick(animal) {
     return event => {
-        animalService.deleteAnimal(animal);
-        window.location.reload();
+        animalService.deleteAnimal(animal).then(()=>{window.location.reload();});        
     }
 }
