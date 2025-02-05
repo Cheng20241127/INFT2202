@@ -121,7 +121,7 @@ async function animal(name) {
             const eleNameError = form.name.nextElementSibling
             try {
                 if(action=="new"){
-                    await animalService.saveAnimal(animalObject);
+                    await animalService.saveAnimal([animalObject]);
                 } else {
                     await animalService.updateAnimal(animalObject)
                 } 

@@ -108,6 +108,6 @@ function drawAnimalTable(animals)
 
 function onDeleteButtonClick(animal) {
     return event => {
-        animalService.deleteAnimal(animal).then(()=>{window.location.reload();});        
+        animalService.deleteAnimal(animal.name).then(()=>{window.location.reload();});        
     }
 }

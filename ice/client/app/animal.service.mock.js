@@ -99,12 +99,12 @@ AnimalService.prototype.updateAnimal = function(animal) {
 /*
  *
  */
-AnimalService.prototype.deleteAnimal = function(animal) {
+AnimalService.prototype.deleteAnimal = function(name) {
     return new Promise((resolve, reject) => {
         const self = this;
         setTimeout(function () {       
             const animals = self.getAnimals();
-            const idx = animals.findIndex(a => a.name == animal.name);
+            const idx = animals.findIndex(a => a.name == name);
             if (idx === -1) {
                 throw new Error('That animal does not exist!');
             }
