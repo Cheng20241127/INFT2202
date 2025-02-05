@@ -100,7 +100,7 @@ async function animal(name) {
         return valid
     }    
     // create a handler to deal with the submit event
-    function submit(action) {
+    async function submit(action) {
         // validate the form
         const valid = validate();
         // do stuff if the form is valid
@@ -121,9 +121,9 @@ async function animal(name) {
             const eleNameError = form.name.nextElementSibling
             try {
                 if(action=="new"){
-                    animalService.saveAnimal(animalObject);
+                    await animalService.saveAnimal(animalObject);
                 } else {
-                    animalService.updateAnimal(animalObject)
+                    await animalService.updateAnimal(animalObject)
                 } 
                 eleNameError.classList.add('d-none');
                 form.reset();
