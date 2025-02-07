@@ -5,6 +5,9 @@ async function animal(name) {
     let description = 'Add Animal';
     let animal = null;
     function createContent() {
+        if(description == 'No service'){
+            return '';
+        }
         const container = document.createElement('div');
         container.classList.add('mb-2');
         //create animal form content
@@ -149,13 +152,19 @@ async function animal(name) {
     }
     else{
         description = 'Update Animal';
-        let ret = await animalService.findAnimal(name);
-        animal = ret[0];
-        form.addEventListener('submit', function (event) {
-            // prevent the default action from happening
-            event.preventDefault();
-            submit("update");
-        });         
+        try{
+            let ret = await animalService.findAnimal(name);
+            animal = ret[0];
+            form.addEventListener('submit', function (event) {
+                // prevent the default action from happening
+                event.preventDefault();
+                submit("update");
+            });
+        }
+        catch(err){
+//show err on page
+            description = err;
+        }
     }
 
     return {

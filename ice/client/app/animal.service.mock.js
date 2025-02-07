@@ -73,7 +73,7 @@ AnimalService.prototype.findAnimal = function (animalName) {
         const self = this;
         setTimeout(() => {
             if (animalName == 'name 0') {
-                reject('No serivce');
+                reject('No service');
             }
             else {
                 const animals = self.getAnimals();
