@@ -6,16 +6,17 @@ const params = new URL(document.location).searchParams;
 //add records for pagination test
 let recCount = params.get("records");
 if(recCount !== null){
-    let index = 0;
-    while(recCount-->0) {
-        animalService.saveAnimal([{
-            "name": `name ${index++}`,
+    let animals = [];
+    for(let index=0; index<recCount; index++){
+        animals.push({
+            "name": `name ${index}`,
             "breed": "Grizzly Bear",
             "legs": 4,
             "eyes": 2,
             "sound": "Moo"
-          }]);
-    }    
+          });
+    }
+    animalService.saveAnimal(animals);
 }
 
 /* do table stuff */
