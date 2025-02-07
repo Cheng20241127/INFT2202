@@ -51,7 +51,7 @@ AnimalService.prototype.saveAnimal = function(animal) {
             // see if this animal already exists
             if (animals.find(a => a.name == animal.name)) {
                 // tell the caller we're not going to save this
-                throw new Error('An animal with that name already exists!');
+                reject('An animal with that name already exists!');
             }
             // if it doesn't, add it to the array
             animals.push(animal);
@@ -72,7 +72,7 @@ AnimalService.prototype.findAnimal = function(animalName) {
             const animals = self.getAnimals();
             const animal = animals.find(a => a.name == animalName);
             if (!animal) {
-                throw new Error('That animal does not exist!');
+                resolve([]);
             }
             resolve([animal]);
         },250);
@@ -88,7 +88,7 @@ AnimalService.prototype.updateAnimal = function(animal) {
             const animals = self.getAnimals();
             const idx = animals.findIndex(a => a.name == animal.name);
             if (idx === -1) {
-                throw new Error('That animal does not exist!');
+                resolve(false);
             }
             animals[idx] = animal;
             localStorage.setItem('animals', JSON.stringify(animals));
@@ -106,7 +106,7 @@ AnimalService.prototype.deleteAnimal = function(name) {
             const animals = self.getAnimals();
             const idx = animals.findIndex(a => a.name == name);
             if (idx === -1) {
-                throw new Error('That animal does not exist!');
+                resolve(false);
             }
             animals.splice(idx, 1);
             localStorage.setItem('animals', JSON.stringify(animals));
