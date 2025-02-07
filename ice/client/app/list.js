@@ -8,13 +8,13 @@ let recCount = params.get("records");
 if(recCount !== null){
     let index = 0;
     while(recCount-->0) {
-        animalService.saveAnimal({
+        animalService.saveAnimal([{
             "name": `name ${index++}`,
             "breed": "Grizzly Bear",
             "legs": 4,
             "eyes": 2,
             "sound": "Moo"
-          });
+          }]);
     }    
 }
 
