@@ -89,31 +89,8 @@ function list(recordPage) {
             },
             method: 'GET',
         });
-        fetch(req)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((ret) => {
-                let { records, pagination } = ret;
-                divWaiting.classList.add('d-none');
-                let header = document.createElement('div');
-                header.classList.add('d-flex', 'justify-content-between');
-                let h1 = document.createElement('h1');
-                h1.innerHTML = 'Animal List';
-                header.append(h1);
-                header.append(drawPagination(pagination));
-                container.append(header);
-                container.append(drawAnimalTable(records));
-            })
-            .catch(err => {
-                divWaiting.classList.add('d-none');
-                divMessage.innerHTML = err;
-                divMessage.classList.remove('d-none');
-                divMessage.classList.add('alert-danger');
-            });
+//do fetch here
+
         return container;
     }
     return {
