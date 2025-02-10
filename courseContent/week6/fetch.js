@@ -1,14 +1,18 @@
 const serverUrl = 'https://inft2202-server.onrender.com';
+const dcUrl = 'https://inft2202.opentech.durhamcollege.org';
 const localUrl = 'http://localhost:3091';
-const _url = serverUrl;
 
+
+const _url = dcUrl;
 function list(){
+
   const url = new URL('/api/animals', _url);
   const options = {
     method: 'GET', // or 'POST', 'PUT', etc.
     headers: {
-      'Content-Type': 'application/json',
-      'User': 'studentId'
+      //'Content-Type': 'application/json',
+      //'User': 'studentId',
+      'apiKey': '7bfa2060-9d12-42fe-8549-cf9205d269a0'
     }
   };
 
