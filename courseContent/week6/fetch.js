@@ -36,8 +36,9 @@ async function load(){
   const options = {
     method: 'GET', // or 'POST', 'PUT', etc.
     headers: {
-      'Content-Type': 'application/json',
-      'User': 'studentId'
+      //'Content-Type': 'application/json',
+      //'User': 'studentId',
+      'apiKey': '7bfa2060-9d12-42fe-8549-cf9205d269a0'
     }
   };
   
@@ -52,6 +53,7 @@ async function load(){
     console.error('Error fetching data:', error);
   }
 }
+/*
 async function add(){
   const url = new URL('/api/animals', _url);
   const options = {
@@ -79,8 +81,8 @@ async function add(){
   } catch (error) {
     console.error('Error fetching data:', error);
   }
-}
+}*/
 
 //await add();
-//await load();
-list();
+await load();
+//list();
