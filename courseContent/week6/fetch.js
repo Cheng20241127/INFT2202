@@ -4,6 +4,8 @@ const localUrl = 'http://localhost:3091';
 
 
 const _url = dcUrl;
+
+//list uses fetch not in an await way
 function list(){
 
   const url = new URL('/api/animals', _url);
@@ -31,6 +33,7 @@ function list(){
   });
 }
 
+//use fetch in await way
 async function load(){
   const url = new URL('/api/animals', _url);
   const options = {
