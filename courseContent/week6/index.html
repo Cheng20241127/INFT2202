@@ -12,19 +12,6 @@ Description: week6
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script>
-        //xhr sample
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            // Typical action to be performed when the document is ready:
-                document.getElementById("xhrResult").innerHTML = xhttp.responseText;
-            //console.log(xhttp.responseText);
-            }
-        };
-        xhttp.open("GET", "https://inft2202-server.onrender.com/api/animals", true);
-        xhttp.send();  
-    </script>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -59,6 +46,20 @@ Description: week6
 
         </div>
     </main>
+    <script>
+        //xhr sample
+        document.getElementById("xhrResult").innerHTML = "<div class='text-center'><i class='fa fa-5x fa-spinner fa-spin'></i></div>";
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+                document.getElementById("xhrResult").innerHTML = xhttp.responseText;
+            //console.log(xhttp.responseText);
+            }
+        };
+        xhttp.open("GET", "https://inft2202-server.onrender.com/api/animals", true);
+        xhttp.send();  
+    </script>    
 </body>
 
 </html>
