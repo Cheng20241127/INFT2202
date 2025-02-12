@@ -42,23 +42,36 @@ Description: week6
             </li>
         </ol>
         <h2>XHR result</h2>
-        <div id="xhrResult">
-
+        <h3>Animal</h3>
+        <div id="animalResult" class="p-3 mb-2 bg-primary text-dark">
         </div>
+        <h3>Product</h3>
+        <div id="productResult" class="p-3 mb-2 bg-success text-dark">
+        </div>        
     </main>
     <script>
         //xhr sample
-        document.getElementById("xhrResult").innerHTML = "<div class='text-center'><i class='fa fa-5x fa-spinner fa-spin'></i></div>";
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
+        document.getElementById("animalResult").innerHTML = "<div class='text-center'><i class='fa fa-5x fa-spinner fa-spin'></i></div>";
+        var xhrAnimal = new XMLHttpRequest();
+        xhrAnimal.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
             // Typical action to be performed when the document is ready:
-                document.getElementById("xhrResult").innerHTML = xhttp.responseText;
+                document.getElementById("animalResult").innerHTML = xhrAnimal.responseText;
             //console.log(xhttp.responseText);
             }
         };
-        xhttp.open("GET", "https://inft2202-server.onrender.com/api/animals", true);
-        xhttp.send();  
+        xhrAnimal.open("GET", "https://inft2202-server.onrender.com/api/animals", true);
+        xhrAnimal.send();
+
+        document.getElementById("productResult").innerHTML = "<div class='text-center'><i class='fa fa-5x fa-spinner fa-spin'></i></div>";
+        var xhrProduct = new XMLHttpRequest();
+        xhrProduct.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("productResult").innerHTML = xhrProduct.responseText;
+            }
+        };
+        xhrProduct.open("GET", "https://inft2202-server.onrender.com/api/products", true);
+        xhrProduct.send();         
     </script>    
 </body>
 
