@@ -1,0 +1,88 @@
+<!--
+Name: Cheng He
+Description: week8
+-->
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>INFT 2202</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <h1>Week 8</h1>
+        <h2><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction#introducing_node">Intro to Node.js</a></h2>
+        <p>Node.js is an open-source and cross-platform JavaScript runtime environment. It is a popular tool for almost any kind of project!</p>
+        <p>Node.js runs single-threaded, non-blocking, asynchronous programming, which is very memory efficient.</p>
+        <p>The foundation of asynchronous programming in JavaScript is the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>.</p>
+        <h3>Run Javascript with Node.js</h3>
+        <pre><code>node myfirst.js</code></pre>
+        <h3><a href="https://www.geeksforgeeks.org/node-js-modules/">NodeJS Modules</a></h3>
+        <h3><a href="https://www.geeksforgeeks.org/node-js-npm-node-package-manager/">NodeJS NPM</a></h3>
+        <h2><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs">Intro to Express.js</a></h2>
+        <p>Express is a popular unopinionated web framework, written in JavaScript and hosted within the Node.js runtime environment.</p>
+        <h3><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/development_environment#using_npm">Install ExpressJs with npm</a></h3>
+        <div>
+            <span>initial npm</span>
+            <pre><code>
+    cd ice
+    mkdir server
+    cd server
+    <img src="asset/npm_init.png"/>
+            </code></pre>
+        </div>
+        <div>
+            <span>install Express.js</span>
+            <pre><code>npm install express</code></pre>
+            <span class="language-name">Index.js</span>
+            <pre><code>
+    import express from "express";
+    const app = express();
+    const port = 3000;
+    
+    app.get("/", (req, res) => {
+        res.send("Hello World!");
+    });
+    
+    app.listen(port, () => {
+        console.log(`Example app listening on port ${port}!`);
+    });
+            </code></pre>            
+        </div>
+        <span>browse http://localhost:3000</span>
+        <h3><a href="https://www.geeksforgeeks.org/how-to-serve-static-files-in-express-js/">Serving Static Assets</a></h3>
+        <p>create a public folder under root, then copy ice client's index.html over</p>
+        <img src="asset/public.png"/>
+        <div>
+            <span class="language-name">Index.js</span>
+            <pre>
+                <code>
+    import express from "express";
+
+    const app = express();
+    const port = 3000;
+    
+    app.use(express.static('public')); //add this line
+    
+    app.get("/hello", (req, res) => {
+        res.send("Hello World!");
+    });
+    
+    app.listen(port, () => {
+        console.log(`Example app listening on port ${port}!`);
+    });                    
+                </code>
+            </pre>
+        </div>
+        <p>localhost:3000 will get index.html. localhost:3000/hello will get hello response</p>
+    </main>
+</body>
+
+</html>

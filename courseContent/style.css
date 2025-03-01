@@ -1,0 +1,33 @@
+pre code {
+    display: block;
+    padding: 0px;
+    margin: px 0;
+    overflow-x: auto;
+    background-color: #2d2d2d;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 20px;
+    color: #f8f8f2;
+}
+/*
+pre code {
+    display: block;
+    padding: 12px;
+    margin: 12px 0;
+    overflow-x: auto;
+    background-color: #282c34;
+    border: 1px solid #3c4049;
+    border-radius: 6px;
+    font-family: 'Fira Code', 'Menlo', monospace;
+    font-size: 13px;
+    color: #abb2bf;
+    line-height: 1.5;
+}
+
+pre code .keyword { color: #c678dd; }
+pre code .string { color: #98c379; }
+pre code .comment { color: #5c6370; font-style: italic; }
+pre code .function { color: #61afef; }
+pre code .variable { color: #e06c75; }
+*/
