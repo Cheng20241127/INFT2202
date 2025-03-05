@@ -1,0 +1,185 @@
+<!--
+Name: Cheng He
+Description: week9
+-->
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>INFT 2202</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <h1>Week 9</h1>
+        <h2><a href="https://expressjs.com/en/guide/routing.html">Server-side Routing</a></h2>
+        <h3>Route methods</h3>
+        <p>A <a href="https://expressjs.com/en/5x/api.html#app.METHOD">route method</a> is derived from one of the HTTP
+            methods, and is attached to an instance of the express class. The following code is an example of routes
+            that are defined for the GET and the POST methods to the root of the app.</p>
+        <span>app.METHOD(path, callback [, callback ...])</span>
+        <ul>
+            <li>app.get(path, callback [, callback ...])</li>
+            <li>app.post(path, callback [, callback ...])</li>
+            <li>app.put(path, callback [, callback ...])</li>
+        </ul>
+        <h4>Route paths</h4>
+        <p>Route paths, in combination with a request method, define the endpoints at which requests can be made. Route
+            paths can be strings, string patterns, or regular expressions.</p>
+        <div>
+            <span>sample code</span>
+            <pre><code>
+    app.get("/hello", (req, res) => {
+        res.send("&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en-us&quot;&gt;&lt;head&gt;&lt;title&gt;INFT 2202&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;main&gt;&lt;h1&gt;Hello from Express&lt;/h1&gt;&lt;/main&gt;&lt;/body&gt;&lt;/html&gt;");
+    });
+    app.post('/hello', (req, res) => {
+        res.send('POST request to homepage')
+    })
+            </code></pre>
+        </div>
+        <h3>express.Router</h3>
+        <p>Use the express.Router class to create modular, mountable route handlers.</p>
+        <div>
+            <span>router sample</span>
+            <pre>
+                <code>
+    import express from 'express';
+    import animal from "../controllers/animal.js";
+    
+    const router = express.Router();
+    router.get('/:name?', animal.index);
+    router.post('/', animal.add);
+    router.delete('/:name?', animal.delete);
+    router.put('/', animal.update);
+    
+    export default router;                    
+                </code>
+            </pre>
+        </div>
+        <p>Then, load the router module in the app:</p>
+        <div>
+            <pre><code>
+    import animalRouter from '../routes/animal.js'
+
+    app.use('/api/animals', animalRouter);
+            </code></pre>
+        </div>
+        <h2>Serving JSON responses</h2>
+        <h3><a href="https://codeforgeek.com/express-send-json-response/">Sending JSON Data Using Express res.json()
+                Method</a></h3>
+        <div>
+            <span>code sample</span>
+            <pre><code>
+    import animalData from '../data/animal.js'
+    const animal = {
+        index: async function (_, res){
+            try{
+                let ret;
+                const user = _.headers['user'];
+                res.json(animalData);
+            }
+            catch(err){
+                res.status(400).send(err);
+            }
+        },
+    }               
+            </code></pre>
+        </div>
+        <h2><a href="https://www.mongodb.com/docs/manual/introduction/?msockid=29ff89675ed06251255f9a195ffa6333#introduction-to-mongodb">Intro to MongoDB</a></h2>
+        <ul>
+            <li><a href="https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/#install-mongodb-community-edition-on-windows">Install MongoDB Community Edition on Windows</a></li>
+            <li><a href="https://www.mongodb.com/docs/compass/current/">MongoDB Compass</a>
+                <img src="asset/compass.png" width="720px" height="480px"/>
+            </li>
+            <li>Create Connection
+                <img src="asset/connection.png" width="720px" height="480px"/>
+            </li>
+            <li>Create Database
+                <img src="asset/database.png" width="640px" height="400px"/>
+            </li>            
+        </ul>
+        <div>
+            <span>Install mongodb package on express server</span>
+            <pre>
+                <code>
+    npm install mongodb
+                </code>
+            </pre>
+        </div>
+        <div>
+            <span>create dataService.js under service folder</span>
+            <pre>
+                <code>
+    import { MongoClient } from 'mongodb';
+
+    function dataService(collectionName) {
+        const localUri = "mongodb://localhost:27017/";
+        const client = new MongoClient(localUri, { useNewUrlParser: true, useUnifiedTopology: true });
+        const projection = { _id: 0, name: 1, breed: 1, legs: 1, eyes: 1, sound: 1, user:1,createTime:1,updateTime:1,
+            description: 1, stock: 1, price: 1
+        };
+        return {
+            delete: async (name = null) => {
+            },
+            add: async (list) => {
+            },
+            update: async (record) => {
+            },        
+            query: async (name) => {
+            },
+            load: async ({ page = 1, perPage = 5 }) => {
+                try {
+                    await client.connect();
+    
+                    const database = client.db('inft2202');
+                    const collection = database.collection(collectionName);
+    
+                    const count = await collection.countDocuments();
+                    const pages = Math.ceil(count / perPage);
+    
+                    const pagination = {
+                        page: parseInt(page),
+                        perPage: parseInt(perPage),
+                        count,
+                        pages
+                    };
+                    // Define the query, projection, and options
+                    const query = {}; // Example query to find documents where age is greater than 25                
+                    const options = { sort: {}, skip: (pagination.page-1) * pagination.perPage, limit: pagination.perPage }; // Options for pagination: skip 0 documents and limit to 5
+    
+                    // Retrieve the records
+                    const cursor = collection.find(query, { projection, ...options });
+    
+                    return { pagination, records: await cursor.toArray() };
+                } finally {
+                    await client.close();
+                }
+            }
+        }
+    }
+    let service = dataService('animal');
+    let ret = await service.load({page: 1, perPage: 15});
+    console.log(ret);
+                </code>
+            </pre>
+            <span>node dataService.js</span>
+        </div>
+        <div>
+            <span><a href="https://www.mongodb.com/docs/manual/reference/glossary/">Glossary</a></span>
+            <ul>
+                <li><strong><a href="https://mongodb.github.io/node-mongodb-native/api-generated/db.html">database</a>:</strong> A container for collections. Each database has a set of files in the file system. One MongoDB server typically has multiple databases.
+                </li>
+                <li><strong><a href="https://mongodb.github.io/node-mongodb-native/api-generated/collection.html">collection</a>:</strong> A grouping of MongoDB documents. A collection is the equivalent of an RDBMS table. </li>
+                <li><strong><a href="https://mongodb.github.io/node-mongodb-native/api-generated/cursor.html">cursor</a>:</strong> A pointer to the result set of a query. Clients can iterate through a cursor to retrieve results. </li>
+            </ul>
+        </div>
+    </main>
+</body>
+
+</html>
