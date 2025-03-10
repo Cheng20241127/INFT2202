@@ -7,12 +7,12 @@ function config(app) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
 
-    app.use('/api/animals', animalRouter);
-
     let helloContent = `<!DOCTYPE html><html lang=\"en-us\"><head><title>INFT 2202</title></head><body><main><h1>Hello from Express</h1><p>at ${new Date()}</p></main></body></html>`;
     app.get("/hello", (req, res) => {
         res.send(helloContent);
     }); 
+        
+    app.use('/api/animals', animalRouter);
 }
 
 export default config;

@@ -93,7 +93,9 @@ Description: week9
         </div>
         <h2><a href="https://www.mongodb.com/docs/manual/introduction/?msockid=29ff89675ed06251255f9a195ffa6333#introduction-to-mongodb">Intro to MongoDB</a></h2>
         <ul>
-            <li><a href="https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/#install-mongodb-community-edition-on-windows">Install MongoDB Community Edition on Windows</a></li>
+            <li><a href="https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows-unattended/#install-mongodb-community-edition">Install MongoDB Community Edition on Windows</a>
+            <img src="asset/mongoInstallation.png"/>
+            </li>
             <li><a href="https://www.mongodb.com/docs/compass/current/">MongoDB Compass</a>
                 <img src="asset/compass.png" width="720px" height="480px"/>
             </li>
@@ -105,16 +107,22 @@ Description: week9
                 <img src="asset/animal.png" width="640px" height="400px"/>
             </li>
         </ul>
+        <p>You can import some data to the collection.
+            <img src="asset/importData.png"/>
+            sample data is header
+            <img src="asset/sampleData.png"/>
+        </p>
         <div>
             <span>Install mongodb package on express server</span>
             <pre>
                 <code>
-    npm install mongodb
+    repo\ice\server>npm install mongodb
                 </code>
             </pre>
         </div>
         <div>
             <span>create dataService.js under service folder</span>
+            <img src="asset/mongoclient.png"/>
             <pre>
                 <code>
     import { MongoClient } from 'mongodb';
@@ -169,7 +177,10 @@ Description: week9
     console.log(ret);
                 </code>
             </pre>
-            <span>node dataService.js</span>
+            <p>You can test the dataService using the following call</p>
+            <pre>
+                <code>repo\ice\server\service>node dataService.js</code>
+            </pre>
         </div>
         <div>
             <span><a href="https://www.mongodb.com/docs/manual/reference/glossary/">Glossary</a></span>
