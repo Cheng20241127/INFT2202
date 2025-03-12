@@ -83,6 +83,8 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node index.js",
+    "d": "node --inspect index.js",    
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

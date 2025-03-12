@@ -1,0 +1,119 @@
+<!--
+Name: Cheng He
+Description: week8
+-->
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>INFT 2202</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <h1>Week 10</h1>
+        <h2><a href="https://expressjs.com/en/guide/using-middleware.html">Custom Middleware</a></h2>
+        <pre>
+            <code>
+//This example shows a route and its handler function (middleware system). The function handles GET requests to the /user/:id path.                
+    app.get("/animals", (req, res, next) => {
+        res.send("Hello World!");
+    });
+//This example shows a middleware function mounted on the /user/:id path. The function is executed for any type of HTTP request on the /animals path.    
+    app.use('/animals', (req, res, next) => {
+        console.log('Request Type:', req.method)
+        next()
+    })
+            </code>
+        </pre>
+        <p>Express is a routing and middleware web framework that has minimal functionality of its own: An Express application is essentially a series of middleware function calls.</p>
+        <h3><a href="https://expressjs.com/en/guide/writing-middleware.html#:~:text=Learn%20how%20to%20write%20custom%20middleware%20functions%20for,best%20practices%20for%20enhancing%20request%20and%20response%20handling.">Writing middleware for use in Express apps</a></h3>
+        <h4>Middleware function</h4>
+        <pre><code>
+    const myLogger = function (req, res, next) {
+        console.log('Request Type:', req.method)
+        next()
+    }
+    app.use(myLogger)
+        </code></pre>
+        <h2>Logging</h2>
+    Agile methodoloy based software products cannot be bug free, so logging the status of process and error handling are <a href="https://codezup.com/mastering-middlewares-in-express-for-error-handling-and-logging/">crucial skills</a> for any web developer.
+        <h3><a href="https://www.atatus.com/blog/winston-logging-node-js/">Winston Logging Tutorial</a></h3>        
+        <h2>Server-side Input Validation</h2>
+        <p><a href="https://www.packetlabs.net/posts/input-validation/">Client-Side vs Server-Side Validation</a></p>
+        <h3><a href="https://express-validator.github.io/docs/">express-validator</a></h3>
+        <p>express-validator is a set of express.js middlewares that wraps the extensive collection of validators and sanitizers offered by validator.js.</p>
+        <h4>Installation</h4>
+        <div>
+            <pre>
+                <code>
+    npm install express-validator
+                </code>
+            </pre>
+        </div>
+        <h4>Getting Started</h4>
+        <div>
+            <pre><code>
+//query('person').notEmpty() is used as a middleware function in the route definition. Express.js automatically passes the req, res, and next objects to each middleware function.
+//Middleware Execution: When a request is made to /hello, Express.js calls the query('person').notEmpty() middleware function.
+//This middleware function checks if the person query parameter is not empty.
+//If the validation fails, it adds an error to the request object and calls the next function to pass control to the next middleware or route handler.
+//So, while you don’t explicitly see req, res, and next being passed to query('person').notEmpty(), Express.js handles this under the hood.
+    app.get('/hello', query('person').notEmpty(), (req, res) => {
+        const result = validationResult(req);
+        if (result.isEmpty()) {
+            return res.send(`Hello, ${req.query.person}!`);
+        }
+        
+        res.send({ errors: result.array() });
+    });            
+            </code></pre>
+        </div>
+        <h4><a href="https://express-validator.github.io/docs/guides/getting-started/#sanitizing-inputs">Sanitizing inputs</a></h4>
+        <h4><a href="https://express-validator.github.io/docs/guides/getting-started#accessing-validated-data">Accessing validated data</a></h4>        
+        <h4><a href="https://express-validator.github.io/docs/guides/schema-validation">Schema validation</a></h4>
+        <p>Schemas are an object-based way of defining validations or sanitizations on requests. They offer exactly the same functionality as regular validation chains - in fact, under the hood, express-validator deals all in validation chains!</p>
+        <p>Schemas are plain JavaScript objects that you pass to the checkSchema() function, where you specify which fields to validate as the keys, and the schema of the field as the value.</p>
+        <p>Check out the <a href="https://express-validator.github.io/docs/guides/schema-validation">full documentation</a> to learn about all of the options.</p>
+        <pre>
+            <code>
+    checkSchema({
+        //key, usernanme, specifies the field
+        username: {//schema of the field, which contains the validators, sanitizers, and any options to modify the behavior of the internal validation chain.
+            errorMessage: 'Invalid username',
+            isEmail: true, //keys can be a mix of one or more of built-in validators,built-in sanitizers,field modifiers or any other name, meaning it's either a custom validator or custom sanitizer
+        },
+        password: {
+            isLength: {
+                options: { min: 8 },
+                errorMessage: 'Password should be at least 8 chars',
+            },
+        },
+        });
+            </code>
+        </pre>
+        <h4><a href="https://express-validator.github.io/docs/api/check">express-validator API</a></h4>
+        <p>The <a href="https://express-validator.github.io/docs/api/check">check() function</a> is the main API used for validating and sanitizing HTTP requests with express-validator.</p>
+        <ul>
+            <li><a href="https://express-validator.github.io/docs/api/check/">check</a></li>
+            <li><a href="https://express-validator.github.io/docs/api/check-schema">checkSchema</a>
+            <pre><code>
+    router.get('/:name?', checkValidation(animal.rules), animal.index);
+->
+    router.get('/:name?', [animal.rules, doValidation], animal.index);
+->
+//[checkSchema(...), doValidation] is an array of middle wares
+    router.get('/:name?', [checkSchema(...), doValidation], animal.index);
+            </code></pre>
+            </li>
+        </ul>
+    </main>
+</body>
+
+</html>

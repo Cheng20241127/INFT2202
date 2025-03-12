@@ -181,6 +181,15 @@ Description: week9
             <pre>
                 <code>repo\ice\server\service>node dataService.js</code>
             </pre>
+            <p>After you have verified dataService, you can export it. Then import it in animal controller</p>
+            <pre>
+                <code>
+    //import dataService from '../service/dataService.mock.js';
+    import dataService from '../service/dataService.js';
+    
+    const animalService = dataService('animal');
+                </code>
+            </pre>
         </div>
         <div>
             <span><a href="https://www.mongodb.com/docs/manual/reference/glossary/">Glossary</a></span>
