@@ -1,0 +1,71 @@
+<!--
+Name: Cheng He
+Description: animal api setup procedure
+-->
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>INFT 2202</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <h1>Animal Api Setup Procedure</h1>
+        <h2>Setup Animal Api</h2>
+        <ul>
+            <li>mongodb and dataSerivce
+                <p>following this <a href="https://cheng20241127.github.io/INFT2202/courseContent/week9/">instruction</a> to setup mongodb and verify dataService.</p>
+                <p>Delete all test data in mongodb. <img src="./asset/deleteMongo.png"/></p>
+                <p>export dataService. The sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/service/dataService.js">here</a>.</p>
+            </li>
+            <li>animal controller
+                <p>add animal controller js file under controllers folder. The animal controller provides animal api functions. The sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/controllers/animal.js">here</a>.</p>
+            </li>
+            <li>animal route
+                <p>add animal route js file under routes folder. Animal route will direct api request to animal controller. The sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/routes/animal.js">here</a>.</p>
+            </li>
+            <li>use animalRouter in config file
+                <p>The sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/service/config.js">here</a>.</p>
+            </li>
+            <li>config app in index.js
+                <p>The sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/index.js">here</a>.</p>
+            </li>
+        </ul>
+        <p>After finishing above steps, you can launch <a href="https://cheng20241127.github.io/INFT2202/courseContent/week8/">express server</a>.</p>
+        <h2>Test Animal Api</h2>
+        <p>Run PostMan to test all CRUD animal apis.</p>
+        <ul>
+            <li>Create
+                <img src="./asset/create.png"/>
+            </li>            
+            <li>Read
+                <img src="./asset/read.png"/>
+            </li>
+            <li>Find
+                <img src="./asset/find.png"/>
+            </li>
+            <li>Update
+                <img src="./asset/update.png"/>
+            </li>
+            <li>Delete
+                <img src="./asset/delete.png"/>
+            </li>
+        </ul>
+        <h2>Consume Animal Api</h2>
+        <ul>
+            <li>Press Control + C to shutDown express server.</li>
+            <li>In ice 12 and 14, we copied all animal client files under public folder. We need to create a animal folder under public folder and move all client animal files over there. The sample is <a href="https://github.com/Cheng20241127/INFT2202/tree/main/ice/server/public/animal">here</a>.</li>
+            <li>In animal.service.js file, change the host to be window.location.origin. The sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/public/animal/app/animal.service.js">here</a>. </li>
+            <li>Launch Express Server.</li>            
+        </ul>
+        <h2>Test Express Server</h2>
+        <img src="./asset/animalPage.png"/>
+    </main>
+</body>
