@@ -45,7 +45,10 @@ Description: week8
         <h2>Logging</h2>
     Agile methodoloy based software products cannot be bug free, so logging the status of process and error handling are <a href="https://codezup.com/mastering-middlewares-in-express-for-error-handling-and-logging/">crucial skills</a> for any web developer.
         <h3><a href="https://www.atatus.com/blog/winston-logging-node-js/">Winston Logging Tutorial</a></h3>        
-        <pre><code></code></pre>
+        <ul>
+            <li>logger utilty based on winston is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/utils/logger.js">here</a>.</li>
+            <li>logging middleware is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/middleWare/logging.js">here</a>.</li>
+        </ul>        
         <h2>Server-side Input Validation</h2>
         <p><a href="https://www.packetlabs.net/posts/input-validation/">Client-Side vs Server-Side Validation</a></p>
         <h3><a href="https://express-validator.github.io/docs/">express-validator</a></h3>
@@ -70,7 +73,7 @@ Description: week8
         const result = validationResult(req);
         if (result.isEmpty()) {
             let helloContent = `&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en-us&quot;&gt;&lt;head&gt;&lt;title&gt;INFT 2202&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;main&gt;&lt;h1&gt;Hello ${req.query.person} from Express&lt;/h1&gt;&lt;p&gt;at ${new Date()}&lt;/p&gt;&lt;/main&gt;&lt;/body&gt;&lt;/html&gt;`;
-        res.send(helloContent);
+            res.send(helloContent);
         }
         res.send({ errors: result.array() })
     });            
@@ -113,6 +116,8 @@ Description: week8
     router.get('/:name?', [checkSchema(...), doValidation], animal.index);
             </code></pre>
             </li>
+            <li>Validation middleware is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/middleWare/validation.js">here</a>.</li>
+            <li>Validation rule is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/controllers/animal.js">here</a>.</li>
         </ul>
     </main>
 </body>
