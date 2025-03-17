@@ -66,13 +66,13 @@ Description: week8
 //This middleware function checks if the person query parameter is not empty.
 //If the validation fails, it adds an error to the request object and calls the next function to pass control to the next middleware or route handler.
 //So, while you don’t explicitly see req, res, and next being passed to query('person').notEmpty(), Express.js handles this under the hood.
-    app.get('/hello', query('person').notEmpty(), (req, res) => {
+    app.get("/hello", query('person').notEmpty(),(req, res) => {
         const result = validationResult(req);
         if (result.isEmpty()) {
-            return res.send(`Hello, ${req.query.person}!`);
+            let helloContent = `&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en-us&quot;&gt;&lt;head&gt;&lt;title&gt;INFT 2202&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;main&gt;&lt;h1&gt;Hello ${req.query.person} from Express&lt;/h1&gt;&lt;p&gt;at ${new Date()}&lt;/p&gt;&lt;/main&gt;&lt;/body&gt;&lt;/html&gt;`;
+        res.send(helloContent);
         }
-        
-        res.send({ errors: result.array() });
+        res.send({ errors: result.array() })
     });            
             </code></pre>
         </div>
