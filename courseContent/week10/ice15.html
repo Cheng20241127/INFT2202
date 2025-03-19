@@ -1,0 +1,60 @@
+<!--
+Name: Cheng He
+Description: week8
+-->
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>INFT 2202</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <h1>Logging and Input Validation</h1>
+        <h2>Logging</h2>
+        <ul>
+            <li>Install Winston package</li>
+            <li>Create logger utility. Sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/utils/logger.js">here</a>.</li>
+            <li>Create logging middleware. Sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/middleWare/logging.js">here</a>.</li>
+            <li>User logging middleware. Sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/service/config.js">here</a>.</li>
+        </ul>
+        <h2>Input Validation</h2>
+        <ul>
+            <li>Install express-validator</li>
+            <li>Create validation middleware. Sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/middleWare/validation.js">here</a>.
+                Validation middleware generates a ConflictError object, which will be processed by errorHandler middleware.
+            </li>
+            <li>Create ConflictError class. Sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/errors/ConflictError.js">here</a>.</li>
+            <li>Create errorHandler middleware. Sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/middleWare/errorHandler.js">here</a>.</li>
+            <li>Add validation rules to animal controller. Sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/controllers/animal.js">here</a>.</li>
+            <li>User validation middleware on animal routes. Sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/server/routes/animal.js">here</a>.</li>
+        </ul>
+        <h2>Submission</h2>
+        <ul>
+            <li>Run express server</li>
+            <li>Run PostMan</li>
+            <li>Submit PostMan screenshots.
+                <figure>
+                    <img src="./asset/pageValidation.png"/>
+                </figure>
+                <figure>
+                    <img src="./asset/userValidation.png"/>
+                </figure>
+            </li>
+            <li>Submit log files.
+                <figure>
+                    <img src="./asset/logFiles.png"/>
+                </figure>
+            </li>
+        </ul>
+    </main>
+</body>
+
+</html>
