@@ -1,0 +1,101 @@
+<!--
+Name: Cheng He
+Description: week8
+-->
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>INFT 2202</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <h1>Week 11</h1>
+        <h2><a href="https://www.geeksforgeeks.org/introduction-to-webpack-module-bundler/">Intro to WebPack & Asset Bundling</a></h2>
+        <p>Webpack is a popular open-source JavaScript module bundler. In simpler terms, it takes all the code from your application, transforms and bundles it together into one or more optimized static assets ready for deployment.</p>
+        <h3><a href="https://webpack.js.org/guides/installation">Installation</a></h3>
+        <pre><code>
+    mkdir webPack
+    ...\ice\webPack> npm init
+    ...\ice\webPack> npm install webpack webpack-cli webpack-dev-server html-webpack-plugin copy-webpack-plugin --save-dev
+        </code></pre>
+        <h3><a href="https://webpack.js.org/guides/getting-started/">Basic Setup</a></h3>
+        <figure>
+            <figcaption>folder structure</figcaption>
+            <img src="./asset/scaffolding.png"/>
+        </figure>
+        <h3><a href="https://webpack.js.org/configuration/">Configuration</a></h3>
+        <p>WebPack Config is needed to extend webPack functionality.</p>
+        <figure>
+            <figcaption>webpack.config sample is <a href="https://github.com/Cheng20241127/INFT2202/tree/main/ice/webPack/config/webpack.config.js">here</a></figcaption>
+            <img src="./asset/webpackConfig.png"/>
+        </figure>
+        <h4><a href="https://webpack.js.org/concepts/">Concepts</a></h4>
+        <ul>
+            <li><a href="https://webpack.js.org/configuration/entry-context/#entry">Entry</a>
+            <p>A rule to consider: one entry point per HTML page. <b>SPA: one entry point</b>, MPA: multiple entry points.</p>
+            </li>
+            <li><a href="https://webpack.js.org/configuration/output/">Output</a>
+            <p>The top-level output key contains a set of options instructing webpack on how and where it should output your bundles, assets, and anything else you bundle or load with webpack.</p>
+            <ul>
+                <li><a href="https://webpack.js.org/configuration/output/#outputfilename">output.filename</a></li>
+                <li><a href="https://webpack.js.org/configuration/output/#outputpath">output.path</a></li>
+            </ul>
+            </li>
+            <li><a href="https://webpack.js.org/configuration/module/">Module</a>
+            <p>The module property in a Webpack configuration file (webpack.config.js) is used to define how different types of modules within your project should be treated. This includes specifying rules for loaders that process files, such as JavaScript, CSS, images, and more.</p>
+            <ul>
+                <li><a href="https://webpack.js.org/concepts/modules">Modules</a>
+                <p>Webpack modules can express their dependencies in a variety of ways.</p>
+                <ul>
+                    <li>ES2015 import statement</li>
+                    <li>@import statement inside of a css/sass/less file.</li>
+                    <li>An image url in a stylesheet url(...) or HTML <img src=...> file.</li>
+                </ul>
+                </li>
+                <li>Rule.test property is used to identify which files should be processed by a specific loader. It acts as a condition to match file paths against a regular expression. When a file path matches the regular expression specified in Rule.test, the corresponding loader(s) will be applied to that file.</li>
+                <li>Loader
+                    <p>A Webpack loader is a module that transforms files as they are processed by Webpack. Loaders allow you to preprocess files before they are bundled, enabling you to bundle not just JavaScript, but also other static resources like CSS, images, and HTML. They are essential for transforming and bundling various types of files in your project.</p>
+                </li>
+            </ul>
+            </li>
+            <li><a href="https://webpack.js.org/configuration/plugins/">Plugins</a>
+            <p>The <a href="https://webpack.js.org/plugins/html-webpack-plugin/#root">HtmlWebpackPlugin</a> simplifies creation of HTML files to serve your webpack bundles. The plugin will generate an HTML5 file for you that includes all your webpack bundles in the body using script tags.</p>
+            </li>
+        </ul>
+        <div>
+            <p>The following is the scripts in package.json to specify which config file to be used.</p>
+            <pre>
+                <code>
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "webpack serve --config config\\webpack.config.js --mode development",
+        "build": "webpack --config config\\webpack.config.js --mode production"
+        },
+                </code>
+            </pre>
+        </div>
+        <h2><a href="https://www.geeksforgeeks.org/what-is-single-page-application/">Single Page Applications</a></h2>
+        <ul>
+            <li>
+                Modify list.js to remove whole page refreshing on query url for SinglePage. The sample is <a href="https://github.com/Cheng20241127/INFT2202/tree/main/ice/webPack/src/app/animals/list.js">here</a>.
+            </li>
+            <li>
+                Modify animal index.js to remove whole page refreshing on query url for SinglePage. The sample is <a href="https://github.com/Cheng20241127/INFT2202/tree/main/ice/webPack/src/app/animals/index.js">here</a>.
+            </li>
+            <li>Modify main index.js for SinglePage. The sample is <a href="https://github.com/Cheng20241127/INFT2202/tree/main/ice/webPack/src/index.js">here</a>.</li>
+            <li>Make a public folder under webPack. And copy index.html and img asserts over from client.</li>
+            <li>Modify index.html to remove all animal related js and content. The sample is <a href="https://github.com/Cheng20241127/INFT2202/tree/main/ice/webPack/public/index.html">here</a>.</li>
+            <li>npm run start to launch webpack dev server.</li>
+        </ul>
+    </main>
+</body>
+
+</html>
