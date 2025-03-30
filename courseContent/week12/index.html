@@ -1,0 +1,120 @@
+<!--
+Name: Cheng He
+Description: week8
+-->
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>INFT 2202</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style.css"/>    
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <h1>Week 12</h1>
+        <h2>Content-Type Loaders</h2>
+        <p>In Express.js, content type loaders are used to handle different types of request bodies. Here are three common middleware options to parse various content types:</p>
+        <ul>
+            <li>express.json()
+                <p>This middleware is used to parse incoming requests with JSON payloads. It is based on body-parser and is included in Express 4.16.0 and higher.</p>
+                <pre><code>
+app.use(express.json());
+app.post('/json', (req, res) => {
+    console.log(req.body);
+    res.send('JSON received');
+});
+                </code></pre>
+            </li>
+            <li>express.urlencoded()
+            <p>This middleware is used to parse incoming requests with URL-encoded payloads. It is also based on body-parser and is included in Express 4.16.0 and higher.</p>
+            <pre><code>
+app.use(express.urlencoded({ extended: true }));
+app.post('/urlencoded', (req, res) => {
+    console.log(req.body);
+    res.send('URL-encoded data received');
+});
+            </code></pre>
+            </li>
+            <li>multer
+            <p>For handling multipart/form-data, which is primarily used for file uploads, you can use the multer middleware.</p>
+<pre><code>
+import multer from 'multer';
+const upload = multer({ dest: 'uploads/' });
+app.post('/upload', upload.single('file'), (req, res) => {
+    console.log(req.file);
+    res.send('File uploaded');
+});
+</code></pre>
+            </li>
+        </ul>
+        <h2><a href="https://www.geeksforgeeks.org/what-are-template-engines-in-express-and-why-are-they-used/">Template Engines</a></h2>
+        <h3><a href="https://www.geeksforgeeks.org/use-ejs-as-template-engine-in-node-js/">Use EJS as Template Engine in Node.js</a></h3>
+        <p>Using Webpack with EJS (Embedded JavaScript Templating) can be quite effective for managing your project's assets and templates.</p>
+        <h4>Basic Syntax</h4>
+        <p>EJS templates use special tags to embed JavaScript code:</p>
+        <ul>
+            <li><% %>: Executes JavaScript code without outputting it.</li>
+            <li><%= %>: Outputs the value of a JavaScript expression, escaping HTML.</li>
+            <li><%- %>: Outputs the value of a JavaScript expression without escaping HTML.</li>
+        </ul>
+        <div>
+            <pre>
+                <code>
+    &lt;body&gt;
+    &lt;h1&gt;Unescaped HTML Example&lt;/h1&gt;
+    &lt;% var htmlString = "&lt;strong&gt;This is bold text&lt;/strong&gt;"; %&gt;
+    &lt;p&gt;Escaped HTML: &lt;%= htmlString %&gt;&lt;/p&gt;
+    &lt;p&gt;Unescaped HTML: &lt;%- htmlString %&gt;&lt;/p&gt;
+    &lt;/body&gt;
+                </code>
+            </pre>
+            <ul>
+                <li><%= htmlString %> will output the string as plain text, escaping any HTML tags.</li>
+                <li><%- htmlString %> will output the string as HTML, rendering the tag text.</li>
+            </ul>
+        </div>
+        <div>
+            <span>install ejs-loader on webpack</span>
+            <pre><code>
+    npm i ejs-loader --save-dev
+            </code></pre>
+        </div>
+        <div>
+            <span>add ejs-loader to webpack.config.js module</span>
+            <pre><code>
+    module: {
+        rules: [
+            {
+            test: /\.ejs$/,
+            loader: 'ejs-loader',
+            options: {
+                esModule: false,
+            },
+            }, 
+            </code></pre>
+        </div>        
+        <h2>Page Components</h2>
+        <p>we can use plain javascript to create page components as our list.js and index.js</p>
+        <p>We can also use ejs to utilitize html based page components. The sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/webPack/src/app/views/cover.ejs">cover.ejs</a> under views.</p>
+        <h2><a href="https://dev.to/marcomonsanto/routing-in-spas-173i">Front-End SPA Routing</a></h2>
+        <ul>
+            <li>create an index.js file under app. The sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/webPack/src/app/index.js">here</a>.
+                This file handls all functions at the application level.
+                <ul>
+                    <li>import component builders</li>
+                    <li>create an application object shared between components</li>
+                    <li>create router to handle front-end spa routing</li>
+                </ul>                
+            </li>
+            <li>modify the main index.js to consume the application. The sample is <a href="https://github.com/Cheng20241127/INFT2202/blob/main/ice/webPack/src/index.js">here</a>.</li>
+        </ul>
+    </main>
+</body>
+
+</html>
